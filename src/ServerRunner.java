@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServerRunner {
 
@@ -69,9 +70,7 @@ public class ServerRunner {
 		one.setRam(8);
 		one.setPurchaseDate(LocalDate.parse("2013-11-11", DateTimeFormatter.ISO_DATE));
 		
-		servers.add(one);
-		
-		
+		servers.add(one);	
 		
 		String manufacturer = "HP";
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -88,9 +87,39 @@ public class ServerRunner {
 		servers
 			.stream()
 			.forEach(server -> System.out.println(server.getName()));
+		System.out.println("");
+		
+		long age = 1;
+		
+		System.out.println("Prints out all the servers where age is greater than 3 ");
+		servers
+			.stream()
+			.filter(s1 -> s1.getServerAge() > 3)
+			.forEach(server -> System.out.println(server.getName()));
+		System.out.println("");
 		
 		
+		System.out.println("Average Age for the Servers ");
+		double getAverageAge = 
+				servers
+				.stream()
+				.mapToLong(s -> s.getServerAge())
+				.average()
+				.getAsDouble();
 		
+		System.out.print(getAverageAge);
 		
+		System.out.println("");
+		List<Server> oldServers =
+				servers
+				.stream()
+				.filter(s -> s.getServerAge() > 2)
+				.collect(Collectors.toList());
+		System.out.println("");
+		
+		System.out.println("Send servers to New Store: ");
+		oldServers 
+				.stream()
+				.forEach(s -> System.out.println(s.getName()));
 	}
 }
