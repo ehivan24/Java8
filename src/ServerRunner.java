@@ -95,12 +95,12 @@ public class ServerRunner {
 			.forEach(server -> System.out.println(server.getName()));
 		System.out.println("");
 		
-		long age = 1;
+		long age = 3;
 		
 		System.out.println("Prints out all the servers where age is greater than 3 ");
 		servers
 			.stream()
-			.filter(s1 -> s1.getServerAge() > 3)
+			.filter(s1 -> s1.getServerAge() > age)
 			.forEach(server -> System.out.println(server.getName()));
 		System.out.println("");
 		
