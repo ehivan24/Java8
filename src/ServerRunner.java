@@ -5,7 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ServerRunner {
-
+	/**
+	 * https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html	
+	 * @param Oracle Tutorial
+	 */
+	
+	
+	
 	public static void main(String[] args) {
 		List<Server> servers = new ArrayList<>();
 		Server one = new Server();
