@@ -2,12 +2,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.security.auth.Subject;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class PersonRunner {
 		List<Person> people = new ArrayList<>();
 		Person person = new Person();
 		
-		person.setAge(26);
+		person.setAge(21);
 		person.setName("Joe");
 		person.setEmailAddress("joe@yahoo.com");
 		person.setGender(Person.Sex.MALE);
@@ -141,6 +141,35 @@ public class PersonRunner {
 		.sum();
 		System.out.println(totalAges);
 		
+		System.out.println("");
+		
+		IntSummaryStatistics ageSummary =
+				people
+				.stream()
+				.collect(Collectors.summarizingInt(p -> p.getAge()));
+
+		System.out.println(ageSummary);
+		
+		System.out.println("");
+		
+		String phrase = people
+			    .stream()
+			    .filter(p -> p.getAge() >= 18)
+			    .map(p -> p.name)
+			    .collect(Collectors.joining(", ", "In Germany ", " are of legal age."));
+
+		System.out.println(phrase);
+			
+		Map<Integer, String> map = 
+				people
+				.stream()
+				.collect(Collectors.toMap(
+				        p -> p.getAge(),
+				        p -> p.getName(),
+				        (name1, name2) -> name1 + ";" + name2));
+
+		System.out.println(map);
+			
 		
 	}
 	
