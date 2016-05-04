@@ -4,6 +4,9 @@ public class Human {
     int age;
     
     public Human(String name, int age) {
+    	if(name == null) throw new NullPointerException("Name cannot be null");
+    	if(age < 0) throw new IllegalArgumentException("Age cannot be less than 0"); 
+    	
     	this.name =  name;
     	this.age = age;
 	}
